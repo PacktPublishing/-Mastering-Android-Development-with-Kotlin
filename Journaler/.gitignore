@@ -1,0 +1,10 @@
+.idea
+.gradle
+build/
+gradle*
+!gradle-plugins*
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+local.properties
+gen
