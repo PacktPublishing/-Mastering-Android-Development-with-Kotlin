@@ -19,7 +19,47 @@ android {
         }
     }
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += [
+                'src/main/kotlin',
+                'src/common/kotlin',
+                'src/debug/kotlin',
+                'src/release/kotlin',
+                'src/staging/kotlin',
+                'src/preproduction/kotlin',
+                'src/debug/java',
+                'src/release/java',
+                'src/staging/java',
+                'src/preproduction/java',
+                'src/androidTest/java',
+                'src/androidTest/kotlin'
+        ]
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".dev"
+        }
+        staging {
+            debuggable true
+            applicationIdSuffix ".sta"
+        }
+        preproduction {
+            applicationIdSuffix ".pre"
+        }
+        release {}
+    }
+    productFlavors {
+        demo {
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        complete {
+            applicationIdSuffix ".complete"
+            versionNameSuffix "-complete"
+        }
+        special {
+            applicationIdSuffix ".special"
+            versionNameSuffix "-special"
+        }
     }
 }
 
