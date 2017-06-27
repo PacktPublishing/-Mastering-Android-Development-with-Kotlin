@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         Log.v(tag, "[ ON POST CREATE ]")
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.v(tag, "[ ON START ]")
+    }
+
     override fun onResume() {
         super.onResume()
         Log.v(tag, "[ ON RESUME ]")
@@ -33,19 +38,14 @@ class MainActivity : AppCompatActivity() {
         Log.v(tag, "[ ON POST RESUME ]")
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.v(tag, "[ ON START ]")
+    override fun onPause() {
+        super.onPause()
+        Log.v(tag, "[ ON PAUSE ]")
     }
 
     override fun onStop() {
         super.onStop()
         Log.v(tag, "[ ON STOP ]")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.v(tag, "[ ON PAUSE ]")
     }
 
     override fun onDestroy() {
