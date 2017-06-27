@@ -12,10 +12,15 @@ class MainActivity : AppCompatActivity() {
 
     private val tag = Journaler.tag
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        Log.v(tag, "[ ON CREATE 1 ]")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        setContentView(R.layout.activity_main)
-        Log.v(tag, "[ ON CREATE ]")
+        Log.v(tag, "[ ON CREATE 2 ]")
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -30,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
         Log.v(tag, "[ ON START ]")
     }
 
