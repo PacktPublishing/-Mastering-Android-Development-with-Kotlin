@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         Log.v(tag, "[ ON POST CREATE ]")
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.v(tag, "[ ON RESTART ]")
+    }
+
     override fun onStart() {
         super.onStart()
         Log.v(tag, "[ ON START ]")
