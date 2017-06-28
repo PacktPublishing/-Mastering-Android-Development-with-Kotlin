@@ -20,6 +20,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.NoteActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.TodoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
