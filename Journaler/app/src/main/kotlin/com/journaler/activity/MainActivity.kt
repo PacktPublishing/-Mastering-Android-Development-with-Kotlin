@@ -9,4 +9,6 @@ class MainActivity : BaseActivity() {
 
     override fun getLayout() = R.layout.activity_main
 
+    override fun getActivityTitle() = R.string.app_name
+
 }
