@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Journaler</string>
+    <string name="title">Title</string>
+    <string name="your_note_content_goes_here">Your note content goes here.</string>
 </resources>
