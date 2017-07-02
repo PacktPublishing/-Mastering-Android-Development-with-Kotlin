@@ -3,6 +3,8 @@ package com.journaler.activity
 import android.os.Bundle
 import com.journaler.R
 import com.journaler.fragment.ItemsFragment
+import com.journaler.fragment.ManualFragment
+import kotlinx.android.synthetic.main.activity_header.*
 
 
 class MainActivity : BaseActivity() {
@@ -20,6 +22,16 @@ class MainActivity : BaseActivity() {
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit()
+
+        filter_menu.setText(R.string.hlp)
+        filter_menu.setOnClickListener {
+            val userManualFrg = ManualFragment()
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, userManualFrg)
+                    .addToBackStack("User manual")
+                    .commit()
+        }
     }
 
 }

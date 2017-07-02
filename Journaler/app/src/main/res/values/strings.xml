@@ -4,4 +4,6 @@
     <string name="your_note_content_goes_here">Your note content goes here.</string>
     <string name="pick_a_date">Pick a date</string>
     <string name="pick_time">Pick time</string>
+    <string name="hlp">H</string>
+    <string name="lorem_ipsum_sit_dolore">Lorem ipsum sit dolore</string>
 </resources>
