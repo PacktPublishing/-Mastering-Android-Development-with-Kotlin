@@ -3,7 +3,7 @@ package com.journaler.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_header.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
-        activity_title.setText(getActivityTitle())
+        setSupportActionBar(toolbar)
         Log.v(tag, "[ ON CREATE ]")
     }
 

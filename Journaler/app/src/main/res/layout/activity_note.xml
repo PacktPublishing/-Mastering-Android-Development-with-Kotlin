@@ -9,7 +9,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/activity_header" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp" />
 
         <EditText
             android:id="@+id/note_title"
