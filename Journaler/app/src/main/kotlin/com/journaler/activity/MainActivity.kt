@@ -37,11 +37,11 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.drawing_menu -> {
-                Log.v(tag, "Main menu.")
+                Log.v(tag, "Main menu chosen.")
                 return true
             }
             R.id.options_menu -> {
-                Log.v(tag, "Options menu.")
+                Log.v(tag, "Options menu chosen.")
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
