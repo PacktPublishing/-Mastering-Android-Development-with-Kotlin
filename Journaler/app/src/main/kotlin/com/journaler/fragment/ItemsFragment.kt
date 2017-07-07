@@ -44,10 +44,10 @@ class ItemsFragment : BaseFragment() {
                             { _, which ->
                                 when (which) {
                                     0 -> {
-                                        openCreateNote()
+                                        openCreateTodo()
                                     }
                                     1 -> {
-                                        openCreateTodo()
+                                        openCreateNote()
                                     }
                                     else -> Log.e(logTag, "Unknown option selected [ $which ]")
                                 }
