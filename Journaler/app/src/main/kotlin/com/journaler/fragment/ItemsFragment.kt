@@ -62,13 +62,13 @@ class ItemsFragment : BaseFragment() {
 
     private fun openCreateNote() {
         val intent = Intent(context, NoteActivity::class.java)
-        intent.putExtra(MODE.EXTRAS_KEY, MODE.CREATE)
+        intent.putExtra(MODE.EXTRAS_KEY, MODE.CREATE.mode)
         startActivity(intent)
     }
 
     private fun openCreateTodo() {
         val intent = Intent(context, TodoActivity::class.java)
-        intent.putExtra(MODE.EXTRAS_KEY, MODE.CREATE)
+        intent.putExtra(MODE.EXTRAS_KEY, MODE.CREATE.mode)
         startActivity(intent)
     }
 
