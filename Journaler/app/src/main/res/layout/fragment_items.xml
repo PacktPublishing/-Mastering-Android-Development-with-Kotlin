@@ -10,6 +10,7 @@
         android:background="@android:color/darker_gray" />
 
     <android.support.design.widget.FloatingActionButton
+        android:backgroundTint="@color/colorPrimary"
         android:id="@+id/new_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
