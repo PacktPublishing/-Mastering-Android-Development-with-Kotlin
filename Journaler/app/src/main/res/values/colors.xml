@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="green">#11c403</color>
+    <color name="green_dark">#0e8c05</color>
+    <color name="white">#ffffff</color>
+    <color name="white_transparent_40">#64ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_transparent_40">#64000000</color>
+    <color name="grey_disabled">#d5d5d5</color>
+    <color name="grey_text">#444d57</color>
+    <color name="grey_text_transparent_40">#64444d57</color>
+    <color name="grey_text_middle">#6d6d6d</color>
+    <color name="grey_text_light">#b9b9b9</color>
+    <color name="grey_thin_separator">#f1f1f1</color>
+    <color name="grey_thin_separator_settings">#eeeeee</color>
+    <color name="vermilion">#f3494c</color>
+    <color name="vermilion_dark">#c64145</color>
+    <color name="vermilion_transparent_40">#64f3494c</color>
+    <color name="plum">#121e2a</color>
+
     <color name="colorPrimary">#ff6600</color>
     <color name="colorPrimaryDark">#197734</color>
     <color name="colorAccent">#ffae00</color>
