@@ -14,6 +14,8 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-
+    <style name="simple_button_green" parent="simple_button">
+        <item name="android:background">@drawable/selector_button_green</item>
+    </style>
 
 </resources>

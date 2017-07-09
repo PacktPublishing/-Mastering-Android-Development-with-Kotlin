@@ -30,6 +30,7 @@
             android:weightSum="1">
 
             <Button
+                style="@style/simple_button_green"
                 android:id="@+id/pick_date"
                 android:text="@string/pick_a_date"
                 android:layout_width="0dp"
@@ -37,6 +38,7 @@
                 android:layout_weight="0.5" />
 
             <Button
+                style="@style/simple_button_green"
                 android:id="@+id/pick_time"
                 android:text="@string/pick_time"
                 android:layout_width="0dp"
