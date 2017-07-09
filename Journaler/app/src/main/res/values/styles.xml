@@ -18,4 +18,22 @@
         <item name="android:background">@drawable/selector_button_green</item>
     </style>
 
+    <style name="simple_button_grey" parent="simple_button">
+        <item name="android:background">@drawable/selector_button_grey</item>
+    </style>
+
+    <style name="edit_text_transparent">
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">19dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:background">@color/black_transparent_40</item>
+    </style>
+
+    <style name="edit_text_gery_text" parent="edit_text_transparent">
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/grey_text_light</item>
+    </style>
+
 </resources>

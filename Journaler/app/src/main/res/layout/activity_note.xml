@@ -17,6 +17,7 @@
             android:elevation="4dp" />
 
         <EditText
+            style="@style/edit_text_transparent"
             android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
             android:padding="@dimen/form_padding" />
 
         <EditText
+            style="@style/edit_text_gery_text"
             android:id="@+id/note_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

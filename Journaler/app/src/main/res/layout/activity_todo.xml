@@ -17,6 +17,7 @@
             android:elevation="4dp" />
 
         <EditText
+            style="@style/edit_text_transparent"
             android:id="@+id/todo_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
         </LinearLayout>
 
         <EditText
+            style="@style/edit_text_gery_text"
             android:id="@+id/todo_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
