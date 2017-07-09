@@ -1,14 +1,70 @@
 package com.journaler.activity
 
+import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import com.journaler.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    companion object {
+        private var fontExoBold: Typeface? = null
+        private var fontExoRegular: Typeface? = null
+
+        fun applyFonts(view: View, ctx: Context) {
+            var vTag = ""
+            if (view.tag is String) {
+                vTag = view.tag as String
+            }
+            when (view) {
+                is ViewGroup -> {
+                    for (x in 0..view.childCount - 1) {
+                        applyFonts(view.getChildAt(x), ctx)
+                    }
+                }
+                is Button -> {
+                    when (vTag) {
+                        ctx.getString(R.string.tag_font_bold) -> {
+                            view.typeface = fontExoBold
+                        }
+                        else -> {
+                            view.typeface = fontExoRegular
+                        }
+                    }
+                }
+                is TextView -> {
+                    when (vTag) {
+                        ctx.getString(R.string.tag_font_bold) -> {
+                            view.typeface = fontExoBold
+                        }
+                        else -> {
+                            view.typeface = fontExoRegular
+                        }
+                    }
+                }
+                is EditText -> {
+                    when (vTag) {
+                        ctx.getString(R.string.tag_font_bold) -> {
+                            view.typeface = fontExoBold
+                        }
+                        else -> {
+                            view.typeface = fontExoRegular
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     protected abstract val tag : String
 
@@ -31,6 +87,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         Log.v(tag, "[ ON POST CREATE ]")
+        applyFonts()
     }
 
     override fun onRestart() {
@@ -67,6 +124,25 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.v(tag, "[ ON DESTROY ]")
+    }
+
+    protected fun applyFonts() {
+        initFonts()
+        Log.v(tag, "Applying fonts [ START ]")
+        val rootView = findViewById(android.R.id.content)
+        applyFonts(rootView, this)
+        Log.v(tag, "Applying fonts [ END ]")
+    }
+
+    private fun initFonts() {
+        if (fontExoBold == null) {
+            Log.v(tag, "Initializing font [ Exo2-Bold ]")
+            fontExoBold = Typeface.createFromAsset(assets, "fonts/Exo2-Bold.ttf")
+        }
+        if (fontExoRegular == null) {
+            Log.v(tag, "Initializing font [ Exo2-Regular ]")
+            fontExoRegular = Typeface.createFromAsset(assets, "fonts/Exo2-Regular.ttf")
+        }
     }
 
 }
