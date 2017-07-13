@@ -25,6 +25,7 @@
             android:padding="@dimen/form_padding" />
 
         <LinearLayout
+            android:background="@color/grey_text_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

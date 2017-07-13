@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/grey_disabled" android:state_enabled="false" />
-    <item android:drawable="@color/green_dark" android:state_selected="true" />
-    <item android:drawable="@color/green_dark" android:state_pressed="true" />
-    <item android:drawable="@color/green" />
+    <item android:drawable="@drawable/rect_rounded_grey_disabled" android:state_enabled="false" />
+    <item android:drawable="@drawable/rect_rounded_green_dark" android:state_selected="true" />
+    <item android:drawable="@drawable/rect_rounded_green_dark" android:state_pressed="true" />
+    <item android:drawable="@drawable/rect_rounded_green" />
 
 </selector>

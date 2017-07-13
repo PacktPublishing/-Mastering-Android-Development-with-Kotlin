@@ -16,6 +16,7 @@
     </style>
 
     <style name="simple_button_green" parent="simple_button">
+        <item name="android:layout_margin">5dp</item>
         <item name="android:background">@drawable/selector_button_green</item>
     </style>
 
