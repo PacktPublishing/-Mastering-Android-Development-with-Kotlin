@@ -153,6 +153,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun Activity.getAnimation(animation: Int): Animation = AnimationUtils.loadAnimation(this, animation)
-
 }
+
+fun Activity.getAnimation(animation: Int): Animation = AnimationUtils.loadAnimation(this, animation)
