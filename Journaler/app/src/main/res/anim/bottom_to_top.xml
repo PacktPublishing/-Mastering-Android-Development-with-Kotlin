@@ -1,0 +1,13 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true"
+    android:fillEnabled="true"
+    android:shareInterpolator="false">
+
+    <translate
+        android:duration="900"
+        android:fromXDelta="0%"
+        android:fromYDelta="100%"
+        android:toXDelta="0%"
+        android:toYDelta="0%" />
+
+</set>

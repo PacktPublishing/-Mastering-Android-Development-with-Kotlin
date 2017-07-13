@@ -7,26 +7,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/black_transparent_40"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp" />
+            android:layout_height="wrap_content"
+            android:background="@color/black_transparent_40"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary"
+                android:elevation="4dp" />
+
+        </LinearLayout>
 
         <EditText
-            style="@style/edit_text_transparent"
             android:id="@+id/note_title"
+            style="@style/edit_text_transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/title"
             android:padding="@dimen/form_padding" />
 
         <EditText
-            style="@style/edit_text_gery_text"
             android:id="@+id/note_content"
+            style="@style/edit_text_gery_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
