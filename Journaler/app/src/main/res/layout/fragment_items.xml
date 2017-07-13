@@ -11,6 +11,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/add"
+        android:scaleType="centerInside"
         android:id="@+id/new_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
