@@ -60,8 +60,8 @@ class MainActivity : BaseActivity() {
         menuItems.add(todos)
         menuItems.add(notes)
 
-        val navgationDraweAdapter = NavigationDrawerAdapter(this, menuItems)
-        left_drawer.adapter = navgationDraweAdapter
+        val navgationDrawerAdapter = NavigationDrawerAdapter(this, menuItems)
+        left_drawer.adapter = navgationDrawerAdapter
     }
 
     private class ViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
