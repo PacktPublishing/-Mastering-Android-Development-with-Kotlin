@@ -1,9 +1,12 @@
 package com.journaler.activity
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -16,11 +19,15 @@ import android.widget.EditText
 import android.widget.TextView
 import com.journaler.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
+
+        val REQUEST_GPS = 0
+
         private var fontExoBold: Typeface? = null
         private var fontExoRegular: Typeface? = null
 
@@ -81,6 +88,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getLayout())
         setSupportActionBar(toolbar)
         Log.v(tag, "[ ON CREATE ]")
+        requestGpsPermissions()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -134,6 +142,30 @@ abstract class BaseActivity : AppCompatActivity() {
         Log.v(tag, "[ ON DESTROY ]")
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_GPS) {
+            for (grantResult in grantResults) {
+                if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                    Log.i(
+                            tag,
+                            String.format(
+                                    Locale.ENGLISH, "Permission granted [ %d ]", requestCode
+                            )
+                    )
+                } else {
+                    Log.e(
+                            tag,
+                            String.format(
+                                    Locale.ENGLISH,
+                                    "Permission not granted [ %d ]",
+                                    requestCode
+                            )
+                    )
+                }
+            }
+        }
+    }
+
     protected fun applyFonts() {
         initFonts()
         Log.v(tag, "Applying fonts [ START ]")
@@ -151,6 +183,14 @@ abstract class BaseActivity : AppCompatActivity() {
             Log.v(tag, "Initializing font [ Exo2-Regular ]")
             fontExoRegular = Typeface.createFromAsset(assets, "fonts/Exo2-Regular.ttf")
         }
+    }
+
+    private fun requestGpsPermissions() {
+        ActivityCompat.requestPermissions(
+                this@BaseActivity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                REQUEST_GPS
+        )
     }
 
 }
