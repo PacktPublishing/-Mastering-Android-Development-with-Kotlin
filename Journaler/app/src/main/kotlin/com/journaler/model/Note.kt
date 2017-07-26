@@ -1,14 +1,17 @@
 package com.journaler.model
 
 import android.location.Location
-import com.journaler.database.DbModel
 
 
-data class Note(
-        var title: String,
-        var message: String,
-        var location: Location
-) : DbModel() {
+class Note(
+        title: String,
+        message: String,
+        location: Location
+) : Entry(
+        title,
+        message,
+        location
+) {
 
     override var id = 0L
 

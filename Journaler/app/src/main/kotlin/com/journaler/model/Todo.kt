@@ -1,15 +1,17 @@
 package com.journaler.model
 
 import android.location.Location
-import com.journaler.database.DbModel
 
-
-data class Todo(
-        var title: String,
-        var message: String,
-        var location: Location,
+class Todo(
+        title: String,
+        message: String,
+        location: Location,
         var scheduledFor: Long
-) : DbModel(){
+) : Entry(
+        title,
+        message,
+        location
+) {
 
     override var id = 0L
 

@@ -77,6 +77,14 @@ class ItemsFragment : BaseFragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        val btn = view?.findViewById<FloatingActionButton>(R.id.new_item)
+        btn?.let {
+            animate(btn, false)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
