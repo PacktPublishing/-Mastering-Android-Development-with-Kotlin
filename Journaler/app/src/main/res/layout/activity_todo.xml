@@ -25,13 +25,28 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/todo_title"
-            style="@style/edit_text_transparent"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/title"
-            android:padding="@dimen/form_padding" />
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/todo_title"
+                style="@style/edit_text_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:padding="@dimen/form_padding" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

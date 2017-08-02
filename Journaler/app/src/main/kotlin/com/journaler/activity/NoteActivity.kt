@@ -3,6 +3,9 @@ package com.journaler.activity
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -18,6 +21,7 @@ class NoteActivity : ItemActivity() {
 
     private var note: Note? = null
     override val tag = "Note activity"
+    private var handler: Handler? = null
     private var location: Location? = null
     override fun getLayout() = R.layout.activity_note
     private val executor = TaskExecutor.getInstance(1)
@@ -51,6 +55,18 @@ class NoteActivity : ItemActivity() {
                     } else {
                         Log.e(tag, "Note not inserted.")
                     }
+                    handler?.post {
+                        var color = R.color.vermilion
+                        if (result) {
+                            color = R.color.green
+                        }
+                        indicator.setBackgroundColor(
+                                ContextCompat.getColor(
+                                        this@NoteActivity,
+                                        color
+                                )
+                        )
+                    }
                 }
 
             }
@@ -65,6 +81,7 @@ class NoteActivity : ItemActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handler = Handler(Looper.getMainLooper())
         note_title.addTextChangedListener(textWatcher)
         note_content.addTextChangedListener(textWatcher)
     }
@@ -87,6 +104,16 @@ class NoteActivity : ItemActivity() {
                     Log.i(tag, "Note updated.")
                 } else {
                     Log.e(tag, "Note not updated.")
+                }
+                handler?.post {
+                    var color = R.color.vermilion
+                    if (result) {
+                        color = R.color.green
+                    }
+                    indicator.setBackgroundColor(ContextCompat.getColor(
+                            this@NoteActivity,
+                            color
+                    ))
                 }
             }
         }
