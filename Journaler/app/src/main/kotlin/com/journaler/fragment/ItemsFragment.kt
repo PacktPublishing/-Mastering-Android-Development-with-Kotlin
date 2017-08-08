@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
+import android.widget.ListView
 import com.journaler.R
 import com.journaler.activity.NoteActivity
 import com.journaler.activity.TodoActivity
@@ -83,6 +84,15 @@ class ItemsFragment : BaseFragment() {
         btn?.let {
             animate(btn, false)
         }
+
+        val items = view?.findViewById<ListView>(R.id.items)
+        items?.let {
+            items.postDelayed({
+                if (!activity.isFinishing) {
+                    items.setBackgroundColor(R.color.grey_text_middle)
+                }
+            }, 3000)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -106,15 +116,27 @@ class ItemsFragment : BaseFragment() {
     }
 
     private fun animate(btn: FloatingActionButton, expand: Boolean = true) {
-        val animation1 = ObjectAnimator.ofFloat(btn, "scaleX", if(expand){ 1.5f } else { 1.0f })
+        val animation1 = ObjectAnimator.ofFloat(btn, "scaleX", if (expand) {
+            1.5f
+        } else {
+            1.0f
+        })
         animation1.duration = 2000
         animation1.interpolator = BounceInterpolator()
 
-        val animation2 = ObjectAnimator.ofFloat(btn, "scaleY", if(expand){ 1.5f } else { 1.0f })
+        val animation2 = ObjectAnimator.ofFloat(btn, "scaleY", if (expand) {
+            1.5f
+        } else {
+            1.0f
+        })
         animation2.duration = 2000
         animation2.interpolator = BounceInterpolator()
 
-        val animation3 = ObjectAnimator.ofFloat(btn, "alpha", if(expand){ 0.3f } else { 1.0f })
+        val animation3 = ObjectAnimator.ofFloat(btn, "alpha", if (expand) {
+            0.3f
+        } else {
+            1.0f
+        })
         animation3.duration = 500
         animation3.interpolator = AccelerateInterpolator()
 
