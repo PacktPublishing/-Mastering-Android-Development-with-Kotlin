@@ -8,3 +8,5 @@ gradle-app.setting
 .gradletasknamecache
 local.properties
 gen
+
+*.iml
