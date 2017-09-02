@@ -12,7 +12,7 @@ class MainService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
+        return Service.START_STICKY;
     }
 
     override fun onCreate() {
