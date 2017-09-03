@@ -23,6 +23,10 @@
             android:name=".service.MainService"
             android:exported="false" />
 
+        <service
+            android:name=".service.DatabaseService"
+            android:exported="false" />
+
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"

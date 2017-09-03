@@ -17,6 +17,10 @@ import com.journaler.execution.TaskExecutor
 import com.journaler.location.LocationProvider
 import com.journaler.model.Note
 import kotlinx.android.synthetic.main.activity_note.*
+import android.content.Intent
+import com.journaler.model.MODE
+import com.journaler.service.DatabaseService
+
 
 class NoteActivity : ItemActivity() {
 
@@ -45,20 +49,13 @@ class NoteActivity : ItemActivity() {
                 val title = getNoteTitle()
                 val content = getNoteContent()
                 note = Note(title, content, p0)
-                executor.execute {
-                    val param = note
-                    var result = false
-                    param?.let {
-                        result = Db.insert(param)
-                    }
-                    if (result) {
-                        Log.i(tag, "Note inserted.")
-                    } else {
-                        Log.e(tag, "Note not inserted.")
-                    }
-                    sendMessage(result)
-                }
 
+                // Switching to intent service.
+                val dbIntent = Intent(this@NoteActivity, DatabaseService::class.java)
+                dbIntent.putExtra(DatabaseService.EXTRA_ENTRY, note)
+                dbIntent.putExtra(DatabaseService.EXTRA_OPERATION, MODE.CREATE.mode)
+                startService(dbIntent)
+                sendMessage(true)
             }
         }
 
@@ -98,19 +95,13 @@ class NoteActivity : ItemActivity() {
         } else {
             note?.title = getNoteTitle()
             note?.message = getNoteContent()
-            executor.execute {
-                val param = note
-                var result = false
-                param?.let {
-                    result = Db.update(param)
-                }
-                if (result) {
-                    Log.i(tag, "Note updated.")
-                } else {
-                    Log.e(tag, "Note not updated.")
-                }
-                sendMessage(result)
-            }
+
+            // Switching to intent service.
+            val dbIntent = Intent(this@NoteActivity, DatabaseService::class.java)
+            dbIntent.putExtra(DatabaseService.EXTRA_ENTRY, note)
+            dbIntent.putExtra(DatabaseService.EXTRA_OPERATION, MODE.EDIT.mode)
+            startService(dbIntent)
+            sendMessage(true)
         }
     }
 
