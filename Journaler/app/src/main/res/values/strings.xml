@@ -11,5 +11,6 @@
     <string name="next_seven_days">Next 7 days</string>
     <string name="todos">TODOs</string>
     <string name="notes">Notes</string>
+    <string name="synchronize">Synchronize</string>
     <string name="choose_a_type">Choose a type:</string>
 </resources>
