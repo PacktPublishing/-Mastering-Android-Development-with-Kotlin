@@ -10,9 +10,7 @@ import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import com.journaler.R
-import com.journaler.database.Db
 import com.journaler.execution.TaskExecutor
 import com.journaler.location.LocationProvider
 import com.journaler.model.Note
