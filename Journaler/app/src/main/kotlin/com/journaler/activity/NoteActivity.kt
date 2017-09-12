@@ -11,7 +11,6 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import com.journaler.R
-import com.journaler.execution.TaskExecutor
 import com.journaler.location.LocationProvider
 import com.journaler.model.Note
 import kotlinx.android.synthetic.main.activity_note.*
@@ -27,7 +26,6 @@ class NoteActivity : ItemActivity() {
     private var handler: Handler? = null
     private var location: Location? = null
     override fun getLayout() = R.layout.activity_note
-    private val executor = TaskExecutor.getInstance(1)
 
     private val textWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
@@ -113,12 +111,8 @@ class NoteActivity : ItemActivity() {
         handler?.sendMessage(msg)
     }
 
-    private fun getNoteContent(): String {
-        return note_content.text.toString()
-    }
+    private fun getNoteContent(): String = note_content.text.toString()
 
-    private fun getNoteTitle(): String {
-        return note_title.text.toString()
-    }
+    private fun getNoteTitle(): String = note_title.text.toString()
 
 }
