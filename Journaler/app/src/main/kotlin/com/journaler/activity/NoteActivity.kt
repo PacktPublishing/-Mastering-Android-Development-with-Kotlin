@@ -1,5 +1,7 @@
 package com.journaler.activity
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
@@ -15,6 +17,9 @@ import com.journaler.location.LocationProvider
 import com.journaler.model.Note
 import kotlinx.android.synthetic.main.activity_note.*
 import android.content.Intent
+import android.content.IntentFilter
+import android.util.Log
+import com.journaler.database.Crud
 import com.journaler.model.MODE
 import com.journaler.service.DatabaseService
 
@@ -62,6 +67,15 @@ class NoteActivity : ItemActivity() {
         override fun onProviderDisabled(p0: String?) {}
     }
 
+    private val crudOperationListener = object : BroadcastReceiver() {
+        override fun onReceive(ctx: Context?, intent: Intent?) {
+            intent?.let {
+                val crudResultValue = intent.getIntExtra(MODE.EXTRAS_KEY, 0)
+                sendMessage(crudResultValue == 1)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handler = object : Handler(Looper.getMainLooper()) {
@@ -81,6 +95,13 @@ class NoteActivity : ItemActivity() {
         }
         note_title.addTextChangedListener(textWatcher)
         note_content.addTextChangedListener(textWatcher)
+        val intentFiler = IntentFilter(Crud.BROADCAST_ACTION)
+        registerReceiver(crudOperationListener, intentFiler)
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(crudOperationListener)
+        super.onDestroy()
     }
 
     private fun updateNote() {
@@ -102,6 +123,7 @@ class NoteActivity : ItemActivity() {
     }
 
     private fun sendMessage(result: Boolean) {
+        Log.v(tag, "Crud operation result [ $result ]")
         val msg = handler?.obtainMessage()
         if (result) {
             msg?.arg1 = 1

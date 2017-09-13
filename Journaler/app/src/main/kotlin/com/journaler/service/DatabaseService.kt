@@ -3,6 +3,7 @@ package com.journaler.service
 import android.app.IntentService
 import android.content.Intent
 import android.util.Log
+import com.journaler.database.Crud
 import com.journaler.database.Db
 import com.journaler.model.MODE
 import com.journaler.model.Note
@@ -44,6 +45,7 @@ class DatabaseService : IntentService("DatabaseService") {
                         } else {
                             Log.e(tag, "Note not inserted.")
                         }
+                        broadcastResult(result)
                     }
                     MODE.EDIT.mode -> {
                         val result = Db.update(note)
@@ -52,6 +54,7 @@ class DatabaseService : IntentService("DatabaseService") {
                         } else {
                             Log.e(tag, "Note not updated.")
                         }
+                        broadcastResult(result)
                     }
                     else -> {
                         Log.w(tag, "Unknown mode [ $operation ]")
@@ -59,6 +62,18 @@ class DatabaseService : IntentService("DatabaseService") {
                 }
             }
         }
+    }
+
+    private fun broadcastResult(result: Boolean) {
+        val intent = Intent()
+        intent.putExtra(
+                Crud.BROADCAST_EXTRAS_KEY_CRUD_OPERATION_RESULT,
+                if (result) {
+                    1
+                } else {
+                    0
+                }
+        )
     }
 
 
