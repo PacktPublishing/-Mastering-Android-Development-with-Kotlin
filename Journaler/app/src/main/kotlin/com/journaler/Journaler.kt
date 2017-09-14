@@ -17,7 +17,6 @@ class Journaler : Application() {
         super.onCreate()
         ctx = applicationContext
         Log.v(tag, "[ ON CREATE ]")
-        startService()
     }
 
     override fun onLowMemory() {
@@ -30,11 +29,6 @@ class Journaler : Application() {
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         Log.d(tag, "[ ON TRIM MEMORY ]: $level")
-    }
-
-    private fun startService() {
-        val serviceIntent = Intent(this, MainService::class.java)
-        startService(serviceIntent)
     }
 
     private fun stopService() {
