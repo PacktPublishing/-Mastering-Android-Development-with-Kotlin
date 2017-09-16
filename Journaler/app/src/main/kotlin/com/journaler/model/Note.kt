@@ -31,18 +31,12 @@ class Note(
         parcel.writeLong(id)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<Note> {
-        override fun createFromParcel(parcel: Parcel): Note {
-            return Note(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): Note = Note(parcel)
 
-        override fun newArray(size: Int): Array<Note?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<Note?> = arrayOfNulls(size)
     }
 
 }
