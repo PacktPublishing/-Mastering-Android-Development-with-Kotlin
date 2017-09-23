@@ -7,18 +7,29 @@ import retrofit2.http.*
 
 interface JournalerBackendService {
 
-    @POST("user/authenticate")
+    companion object {
+        fun obtain(): JournalerBackendService {
+            return BackendServiceRetrofit
+                    .obtain()
+                    .create(JournalerBackendService::class.java)
+        }
+    }
+
+    @POST("authenticate")
+    // @POST("user/authenticate")
     fun login(
             @HeaderMap headers: Map<String, String>,
             @Body payload: UserLoginRequest
     ): Call<JournalerApiToken>
 
-    @GET("entity/note")
+    @GET("notes")
+    // @GET("entity/note")
     fun getNotes(
             @HeaderMap headers: Map<String, String>
     ): Call<List<Note>>
 
-    @GET("entity/todo")
+    @GET("todos")
+    // @GET("entity/todo")
     fun getTodos(
             @HeaderMap headers: Map<String, String>
     ): Call<List<Todo>>
