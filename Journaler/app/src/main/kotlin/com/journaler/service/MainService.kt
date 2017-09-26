@@ -6,7 +6,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import com.journaler.api.*
-import com.journaler.database.Db
+import com.journaler.database.Content
 import com.journaler.execution.TaskExecutor
 import com.journaler.model.Note
 import com.journaler.model.Todo
@@ -99,7 +99,7 @@ class MainService : Service(), DataSynchronization {
                                     if (response.isSuccessful) {
                                         val notes = response.body()
                                         notes?.let {
-                                            Db.insert(notes)
+                                            Content.insert(notes)
                                         }
                                     }
                                 }
@@ -130,7 +130,7 @@ class MainService : Service(), DataSynchronization {
                                     if (response.isSuccessful) {
                                         val todos = response.body()
                                         todos?.let {
-                                            Db.insert(todos)
+                                            Content.insert(todos)
                                         }
                                     }
                                 }
