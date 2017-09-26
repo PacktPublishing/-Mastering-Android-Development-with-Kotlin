@@ -20,8 +20,9 @@
         android:theme="@style/AppTheme">
 
         <provider
+            android:exported="false"
             android:name="com.journaler.provider.JournalerProvider"
-            android:authorities="JournalerProvider" />
+            android:authorities="com.journaler.provider" />
 
         <service
             android:name=".service.MainService"
