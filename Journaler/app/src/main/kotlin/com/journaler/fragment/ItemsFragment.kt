@@ -13,9 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
+import android.widget.ListView
 import com.journaler.R
 import com.journaler.activity.NoteActivity
 import com.journaler.activity.TodoActivity
+import com.journaler.adapter.EntryAdapter
+import com.journaler.database.Content
+import com.journaler.execution.TaskExecutor
 import com.journaler.model.MODE
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,12 +29,11 @@ class ItemsFragment : BaseFragment() {
 
     private val TODO_REQUEST = 1
     private val NOTE_REQUEST = 0
+    private val executor = TaskExecutor.getInstance(5)
 
     override val logTag = "Items fragment"
 
-    override fun getLayout(): Int {
-        return R.layout.fragment_items
-    }
+    override fun getLayout() = R.layout.fragment_items
 
     override fun onCreateView(
             inflater: LayoutInflater?,
@@ -82,6 +85,13 @@ class ItemsFragment : BaseFragment() {
         val btn = view?.findViewById<FloatingActionButton>(R.id.new_item)
         btn?.let {
             animate(btn, false)
+        }
+        executor.execute {
+            val notes = Content.NOTE.selectAll()
+            val adapter = EntryAdapter(activity, notes)
+            activity.runOnUiThread {
+                view?.findViewById<ListView>(R.id.items)?.adapter = adapter
+            }
         }
     }
 

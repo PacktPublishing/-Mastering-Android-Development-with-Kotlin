@@ -6,6 +6,7 @@ import android.net.Uri
 import com.journaler.database.DbHelper
 import android.content.ContentUris
 import android.database.SQLException
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.text.TextUtils
 
@@ -13,7 +14,9 @@ class JournalerProvider : ContentProvider() {
 
     private val version = 1
     private val name = "journaler"
-    private var db: DbHelper? = null
+    private val db: SQLiteDatabase by lazy {
+        DbHelper(name, version).writableDatabase
+    }
 
     companion object {
         private val dataTypeNote = "note"
@@ -79,15 +82,11 @@ class JournalerProvider : ContentProvider() {
     /**
      * True - if the provider was successfully loaded
      */
-    override fun onCreate(): Boolean {
-        db = DbHelper(name, version)
-        return true
-    }
+    override fun onCreate() = true
 
     override fun insert(uri: Uri?, values: ContentValues?): Uri {
         uri?.let {
             values?.let {
-                val db = DbHelper(name, version).writableDatabase
                 db.beginTransaction()
                 val (url, table) = getParameters(uri)
                 if (!TextUtils.isEmpty(table)) {
@@ -97,7 +96,6 @@ class JournalerProvider : ContentProvider() {
                         db.setTransactionSuccessful()
                     }
                     db.endTransaction()
-                    db.close()
                     if (success) {
                         val resultUrl = ContentUris.withAppendedId(Uri.parse(url), inserted)
                         context.contentResolver.notifyChange(resultUrl, null)
@@ -119,7 +117,6 @@ class JournalerProvider : ContentProvider() {
     ): Int {
         uri?.let {
             values?.let {
-                val db = DbHelper(name, version).writableDatabase
                 db.beginTransaction()
                 val (_, table) = getParameters(uri)
                 if (!TextUtils.isEmpty(table)) {
@@ -129,7 +126,6 @@ class JournalerProvider : ContentProvider() {
                         db.setTransactionSuccessful()
                     }
                     db.endTransaction()
-                    db.close()
                     if (success) {
                         context.contentResolver.notifyChange(uri, null)
                         return updated
@@ -148,7 +144,6 @@ class JournalerProvider : ContentProvider() {
             selectionArgs: Array<out String>?
     ): Int {
         uri?.let {
-            val db = DbHelper(name, version).writableDatabase
             db.beginTransaction()
             val (_, table) = getParameters(uri)
             if (!TextUtils.isEmpty(table)) {
@@ -158,7 +153,6 @@ class JournalerProvider : ContentProvider() {
                     db.setTransactionSuccessful()
                 }
                 db.endTransaction()
-                db.close()
                 if (success) {
                     context.contentResolver.notifyChange(uri, null)
                     return count
@@ -178,13 +172,11 @@ class JournalerProvider : ContentProvider() {
             sortOrder: String?
     ): Cursor {
         uri?.let {
-            val db = DbHelper(name, version).writableDatabase
             val stb = SQLiteQueryBuilder()
             val (_, table) = getParameters(uri)
             stb.tables = table
             stb.setProjectionMap(mutableMapOf<String, String>())
             val cursor = stb.query(db, projection, selection, selectionArgs, null, null, null)
-            db.close()
             // register to watch a content URI for changes
             cursor.setNotificationUri(context.contentResolver, uri)
             return cursor
