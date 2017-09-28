@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Journaler Content Provider Client Example</string>
+    <string name="select">Select data</string>
+    <string name="insert">Insert data</string>
+    <string name="update_data">Update data</string>
+    <string name="delete">Delete data</string>
+</resources>
