@@ -70,8 +70,13 @@ class NoteActivity : ItemActivity() {
     private val crudOperationListener = object : BroadcastReceiver() {
         override fun onReceive(ctx: Context?, intent: Intent?) {
             intent?.let {
-                val crudResultValue = intent.getIntExtra(MODE.EXTRAS_KEY, 0)
-                sendMessage(crudResultValue == 1)
+                val crudResultValue = intent.getLongExtra(
+                        Crud.BROADCAST_EXTRAS_KEY_CRUD_OPERATION_RESULT, 0
+                )
+                if (crudResultValue > 0) {
+                    note?.id = crudResultValue
+                    sendMessage(true)
+                } else sendMessage(false)
             }
         }
     }

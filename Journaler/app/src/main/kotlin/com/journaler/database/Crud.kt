@@ -10,17 +10,17 @@ interface Crud<T> {
         val BROADCAST_EXTRAS_KEY_CRUD_OPERATION_RESULT = "crud_result"
     }
 
-    fun insert(what: T): Boolean
+    fun insert(what: T): Long
 
-    fun insert(what: Collection<T>): Boolean
+    fun insert(what: Collection<T>): Long
 
-    fun update(what: T): Boolean
+    fun update(what: T): Long
 
-    fun update(what: Collection<T>): Boolean
+    fun update(what: Collection<T>): Long
 
-    fun delete(what: T) : Boolean
+    fun delete(what: T) : Long
 
-    fun delete(what: Collection<T>) : Boolean
+    fun delete(what: Collection<T>) : Long
 
     fun select(args: Pair<String, String>, clazz: KClass<DbModel>): List<T>
 
