@@ -44,7 +44,7 @@ class NoteActivity : ItemActivity() {
                         if (!params.isEmpty()) {
                             val param = params[0]
                             param?.let {
-                                return Db.insert(param)
+                                return Db.NOTE.insert(param) > 0
                             }
                         }
                         return false
@@ -90,7 +90,7 @@ class NoteActivity : ItemActivity() {
                     if (!params.isEmpty()) {
                         val param = params[0]
                         param?.let {
-                            return Db.update(param)
+                            return Db.NOTE.update(param) > 0
                         }
                     }
                     return false
