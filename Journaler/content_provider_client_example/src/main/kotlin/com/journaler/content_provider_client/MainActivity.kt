@@ -49,15 +49,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         insert.setOnClickListener {
-
+            // TODO: Implement.
         }
 
         update.setOnClickListener {
-
+            // TODO: Implement.
         }
 
         delete.setOnClickListener {
-
+            // TODO: Implement.
         }
     }
 
