@@ -1,5 +1,6 @@
 package com.journaler.content_provider_client
 
+import android.content.ContentValues
 import android.location.Location
 import android.net.Uri
 import android.os.AsyncTask
@@ -49,7 +50,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         insert.setOnClickListener {
-            // TODO: Implement.
+            val task = object : AsyncTask<Unit, Unit, Unit>() {
+                override fun doInBackground(vararg p0: Unit?) {
+                    for (x in 0..5) {
+                        val uri = Uri.parse("content://com.journaler.provider/note")
+                        val values = ContentValues()
+                        values.put("title", "Title $x")
+                        values.put("message", "Message $x")
+                        val location = Location("stub location $x")
+                        location.latitude = x.toDouble()
+                        location.longitude = x.toDouble()
+                        values.put("location", gson.toJson(location))
+                        contentResolver.insert(uri, values)
+                    }
+                }
+            }
+            task.execute()
         }
 
         update.setOnClickListener {
