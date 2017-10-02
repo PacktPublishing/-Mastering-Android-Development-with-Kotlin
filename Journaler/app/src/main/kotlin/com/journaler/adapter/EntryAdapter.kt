@@ -1,7 +1,10 @@
 package com.journaler.adapter
 
 import android.annotation.SuppressLint
+import android.content.ClipData
 import android.content.Context
+import android.util.Log
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +27,14 @@ class EntryAdapter(
         val view = inflater.inflate(R.layout.adapter_entry, null)
         val label = view.findViewById<TextView>(R.id.title)
         label.text = items[p0].title
+
+        view.setOnLongClickListener {
+            val data = ClipData.newPlainText("", "")
+            val shadowBuilder = View.DragShadowBuilder(view)
+            view.startDrag(data, shadowBuilder, view, 0)
+            true
+        }
+
         return view
     }
 

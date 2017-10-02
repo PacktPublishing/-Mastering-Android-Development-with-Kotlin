@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.util.Log
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,12 +81,38 @@ class ItemsFragment : BaseFragment() {
         return view
     }
 
+    private val dragListener = View.OnDragListener {
+        view, event ->
+        val tag = "Drag and drop"
+        event?.let {
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED -> {
+                    Log.d(tag, "ACTION_DRAG_STARTED")
+                }
+                DragEvent.ACTION_DRAG_ENDED -> {
+                    Log.d(tag, "ACTION_DRAG_ENDED")
+                }
+                DragEvent.ACTION_DRAG_ENTERED -> {
+                    Log.d(tag, "ACTION_DRAG_ENDED")
+                }
+                DragEvent.ACTION_DRAG_EXITED -> {
+                    Log.d(tag, "ACTION_DRAG_ENDED")
+                }
+                else -> {
+                    Log.d(tag, "ACTION_DRAG_ ELSE ...")
+                }
+            }
+        }
+        true
+    }
+
     override fun onResume() {
         super.onResume()
         val btn = view?.findViewById<FloatingActionButton>(R.id.new_item)
         btn?.let {
             animate(btn, false)
         }
+        btn?.setOnDragListener(dragListener)
         executor.execute {
             val notes = Content.NOTE.selectAll()
             val adapter = EntryAdapter(activity, notes)
