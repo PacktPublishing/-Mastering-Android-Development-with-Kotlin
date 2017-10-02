@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import com.journaler.Journaler
 import com.journaler.model.*
 import com.journaler.provider.JournalerProvider
-import kotlin.reflect.KClass
 
 object Content {
 
