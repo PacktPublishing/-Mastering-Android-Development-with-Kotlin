@@ -66,6 +66,9 @@ android {
             versionNameSuffix "-special"
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 repositories {
@@ -85,4 +88,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    kapt 'com.android.databinding:compiler:2.3.1'
 }
