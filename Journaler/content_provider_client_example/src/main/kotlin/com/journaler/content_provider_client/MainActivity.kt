@@ -61,7 +61,17 @@ class MainActivity : AppCompatActivity() {
                         location.latitude = x.toDouble()
                         location.longitude = x.toDouble()
                         values.put("location", gson.toJson(location))
-                        contentResolver.insert(uri, values)
+                        if(contentResolver.insert(uri, values) != null){
+                            Log.v(
+                                    tag,
+                                    "Note inserted [ $x ]"
+                            )
+                        } else {
+                            Log.e(
+                                    tag,
+                                    "Note not inserted [ $x ]"
+                            )
+                        }
                     }
                 }
             }

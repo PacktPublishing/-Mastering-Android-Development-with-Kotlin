@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit
 object BackendServiceRetrofit {
 
     fun obtain(
-            readTimeoutInSeconds: Long = 1,
-            connectTimeoutInSeconds: Long = 1
+            readTimeoutInSeconds: Long = 30,
+            connectTimeoutInSeconds: Long = 30
     ): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
