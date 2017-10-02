@@ -1,36 +1,27 @@
 package com.journaler.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import android.widget.CursorAdapter
 import android.widget.TextView
 import com.journaler.R
-import com.journaler.model.Entry
+import com.journaler.database.DbHelper
 
-class EntryAdapter(
-        private val ctx: Context,
-        private val items: List<Entry>
-) : BaseAdapter() {
+class EntryAdapter(ctx: Context, crsr: Cursor) : CursorAdapter(ctx, crsr) {
 
-    @SuppressLint("InflateParams", "ViewHolder")
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        p1?.let {
-            return p1
-        }
-        val inflater = LayoutInflater.from(ctx)
-        val view = inflater.inflate(R.layout.adapter_entry, null)
-        val label = view.findViewById<TextView>(R.id.title)
-        label.text = items[p0].title
-        return view
+    override fun newView(p0: Context?, p1: Cursor?, p2: ViewGroup?): View {
+        val inflater = LayoutInflater.from(p0)
+        return inflater.inflate(R.layout.adapter_entry, null)
     }
 
-    override fun getItem(p0: Int): Entry = items[p0]
-
-    override fun getItemId(p0: Int): Long = items[p0].id
-
-    override fun getCount(): Int = items.size
+    override fun bindView(p0: View?, p1: Context?, p2: Cursor?) {
+        p0?.let {
+            val label = p0.findViewById<TextView>(R.id.title)
+            label.text = cursor.getString(cursor.getColumnIndexOrThrow(DbHelper.COLUMN_TITLE))
+        }
+    }
 
 }
