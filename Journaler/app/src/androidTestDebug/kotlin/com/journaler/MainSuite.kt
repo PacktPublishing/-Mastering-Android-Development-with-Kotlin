@@ -5,7 +5,7 @@ import org.junit.runners.Suite
 
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
-        DummyTest::class,
-        MainServiceTest::class
+        MainServiceTest::class,
+        NoteTest::class
 )
 class MainSuite
