@@ -1,17 +1,12 @@
 package com.journaler.model
 
-class Dummy {
+class Dummy(
+        var title: String,
+        var content: String
+) {
 
-    var title: String? = null
-    var content: String? = null
-
-    constructor(title: String) {
+    constructor(title: String) : this(title, "") {
         this.title = title
-    }
-
-    constructor(title: String, content: String) {
-        this.title = title
-        this.content = content
     }
 
 }

@@ -12,8 +12,6 @@ class MigrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
+    override fun onResume() = super.onResume()
 
 }
