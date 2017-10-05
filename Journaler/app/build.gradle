@@ -41,6 +41,14 @@ android {
                 'src/androidTestDebug/kotlin'
         ]
     }
+    signingConfigs {
+        release {
+            storeFile file("Releasing/keystore.jks")
+            storePassword "12345678"
+            keyAlias "key0"
+            keyPassword "12345678"
+        }
+    }
     buildTypes {
         debug {
             applicationIdSuffix ".dev"
@@ -52,7 +60,12 @@ android {
         preproduction {
             applicationIdSuffix ".pre"
         }
-        release {}
+        release {
+            debuggable false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
     productFlavors {
         demo {
