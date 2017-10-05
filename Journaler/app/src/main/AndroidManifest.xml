@@ -76,6 +76,16 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.MigrationActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.MigrationActivity2"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
